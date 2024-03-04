@@ -36,6 +36,34 @@ export class BasicPageComponent implements OnInit {
     // this.myForm.reset( rtx5090 );
   }
 
+  isValidField( field: string ): boolean {
+    if ( this.myForm.controls[field]?.errors
+      && this.myForm.controls[field]?.touched ) {
+      return true;
+    }
+      else {
+        return false;
+    }
+  }
+
+  getFieldError( field: string ): string | null {
+
+    if ( !this.myForm.controls[field] ) return null;
+
+    const errors = this.myForm.controls[field].errors || {};
+
+    for (const key of Object.keys(errors) ) {
+      switch (key) {
+        case 'required':
+          return 'Este campo es requerido';
+        case 'minlength':
+          return `Mínimo ${errors['minlength'].requiredLength} caracteres.`;
+      }
+    }
+
+    return null;
+  }
+
   onSave(): void {
 
     if ( this.myForm.invalid ){
