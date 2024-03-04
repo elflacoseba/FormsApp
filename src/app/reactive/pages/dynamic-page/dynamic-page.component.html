@@ -23,10 +23,12 @@
 
             <div class="input-group">
                 <input class="form-control"
+                       [formControl]="newFavorite"
                        placeholder="Agregar favorito">
 
 
                 <button class="btn btn-outline-primary"
+                        (click)="onAddFavorite()"
                         type="button">
                     Agregar favorito
                 </button>
