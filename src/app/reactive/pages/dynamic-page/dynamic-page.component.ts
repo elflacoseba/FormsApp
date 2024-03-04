@@ -65,7 +65,9 @@ export class DynamicPageComponent {
 
     this.favoriteGames.push( this.fb.control(newGame, Validators.required) );
 
+    ( this.myForm.controls['favoriteGames'] as FormArray ) = this.fb.array([]);
     this.newFavorite.reset();
+
   }
 
   onSubmit(): void {
