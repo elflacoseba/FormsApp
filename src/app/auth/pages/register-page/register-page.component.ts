@@ -15,7 +15,11 @@ public myForm: FormGroup = this.fb.group({
   email: ['', [ Validators.required, Validators.pattern( this.validatorsService.emailPattern) ], [ this.emailValidator ] ],
   username: ['', [ Validators.required, this.validatorsService.cantBeStrider ]],
   password: ['', [ Validators.required, Validators.minLength(6) ]],
-  password2: ['', [ Validators.required ]]
+  password2: ['', [ Validators.required ]],
+}, {
+    validators: [
+    this.validatorsService.isFieldOneEqualToFieldTwo('password', 'password2'),
+  ]
 });
 
   constructor(
